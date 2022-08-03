@@ -44,9 +44,13 @@ function saveToDo(toDo) {
 function createToDo(event) {
   event.preventDefault(); // https://developer.mozilla.org/ko/docs/Web/API/Event/preventDefault
   const toDo = toDoInput.value;
-  paintToDo(toDo);
-  saveToDo(toDo);
-  toDoInput.value = '';
+  if (toDo === '') {
+    alert('준비물 리스트를 입력해 주세요.');
+  }else {
+    paintToDo(toDo);
+    saveToDo(toDo);
+    toDoInput.value = '';
+  }
 }
 
 function paintToDo(toDo) {
@@ -67,14 +71,17 @@ function delToDo(event) {
   const { target: button } = event; // Const button = event.target;
   const li = button.parentNode; // ParentNode메서드는 해당 HTML 태그의 부모 태그를 반환한다.
   li.remove();
+  // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
   toDoList = toDoList.filter((toDo) => toDo.id !== Number(li.id)); // Function (toDo) { return toDo.id !== li.id;}
   localStorage.setItem(TODOLIST, JSON.stringify(toDoList));
 }
 
 function completeTodo(event) {
-  if (event.target.classList.contains('checked')) {
-    event.target.classList.remove('checked');
+  // const target = (event.target.nodeName == "LI") ? event.target : event.target.closest("LI"); // https://developer.mozilla.org/ko/docs/Web/API/Element/closest
+  const target = (event.target.nodeName == "LI") ? event.target : event.target.parentNode;
+  if (target.classList.contains('checked')) {
+    target.classList.remove('checked');
   } else {
-    event.target.classList.add('checked');
+    target.classList.add('checked');
   }
 }
