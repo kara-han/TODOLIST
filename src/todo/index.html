@@ -8,14 +8,21 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div id="myDIV" class="header">
-      <form class="toDoForm">
-        <h2 style="margin:5px">여행을 위한 준비물리스트!</h2>
-        <input type="text" placeholder="what are you going to do today?" />
-        <span class="addBtn">추가</span>
-      </form>
+  <div id="backDIV1">  
+    <div id="backDIV2">
+      <div id="myDIV" class="header">
+        <form class="toDoForm">
+          <span class="js-weather"></span>
+          <h2 style="margin:5px">여행을 위한 준비물리스트!</h2>
+          <input type="text" placeholder="what are you going to do today?" />
+          <span class="addBtn">추가</span>
+        </form>
+      </div>
+      <ul class="toDos"></ul>
     </div>
-    <ul class="toDos"></ul>
+  </div>  
+
+    <script src="weather.js"></script>
     <script src="todo.js"></script>
   </body>
 </html>
